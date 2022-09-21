@@ -9,6 +9,7 @@ const client = new Client({ intents: ["GuildMessages"] });
 const commandManager = new CommandManager({
   client,
   devGuildID: "899466085735223337",
+  isDev: process.env.ENV !== "PROD",
 });
 
 client.on("ready", async () => {
