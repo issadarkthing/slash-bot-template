@@ -3,7 +3,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon dist/index.js",
-    "upload": "node dist/upload.js"
+    "upload": "node dist/upload.js",
+    "prettier": "prettier --write src"
   },
   "devDependencies": {
     "dotenv": "^16.0.2",
