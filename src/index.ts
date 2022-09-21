@@ -1,24 +1,19 @@
-import { Client } from "discord.js";
+import { Client } from "./structure/Client";
 import { config } from "dotenv";
-import { CommandManager } from "@jiman24/slash-commandment";
 import path from "path";
 
 config();
 
 
-const client = new Client({ intents: ["GuildMessages"] });
-const commandManager = new CommandManager({ 
-  client, 
-  devGuildID: "899466085735223337",
-});
+export const client = new Client({ intents: ["GuildMessages"] });
+const discordClient = client.discordClient;
 
-client.on("ready", () => {
-  commandManager.loadCommands(path.join(__dirname, "commands"));
-  console.log(`${client.user!.username} is ready!`);
+discordClient.on("ready", () => {
+  client.commandManager.loadCommands(path.join(__dirname, "commands"));
+  console.log(`${discordClient.user!.username} is ready!`);
 })
 
 
-client.on("interactionCreate", i => commandManager.handleInteraction(i));
+discordClient.on("interactionCreate", i => client.commandManager.handleInteraction(i));
 
-
-client.login(process.env.BOT_TOKEN);
+discordClient.login(process.env.BOT_TOKEN);
