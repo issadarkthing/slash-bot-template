@@ -14,10 +14,11 @@ const commandManager = new CommandManager({
 
 client.on("ready", () => {
   commandManager.loadCommands(path.join(__dirname, "commands"));
+  console.log(`${client.user!.username} is ready!`);
 })
 
 
 client.on("interactionCreate", i => commandManager.handleInteraction(i));
 
 
-client.login(process.env.BOT_TOKEN).then(() => console.log("bot is ready"));
+client.login(process.env.BOT_TOKEN);
